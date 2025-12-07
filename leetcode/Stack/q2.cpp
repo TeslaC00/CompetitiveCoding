@@ -1,4 +1,5 @@
-#include<vector>
+#include <vector>
+#include <utility>
 
 class MinStack {
 private:
@@ -27,6 +28,10 @@ public:
 		return m_stack.back().second;
 	}
 };
+
+int main() {
+	return 0;
+}
 
 /**
  * Your MinStack object will be instantiated and called as such:

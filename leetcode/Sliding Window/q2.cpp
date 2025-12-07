@@ -13,6 +13,8 @@ int lengthOfLongestSubstring(std::string s) {
 		charIndex[ch] = right;
 		maxLength = std::max(maxLength, right - left + 1);
 	}
+
+	return maxLength;
 }
 
 int main() {
