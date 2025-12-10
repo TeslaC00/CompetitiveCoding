@@ -15,36 +15,22 @@ public:
 
 		if (head == nullptr) return nullptr;
 
-		int count = 0;
-		ListNode* counter = head;
+		ListNode dummy(0, head);
+		ListNode* prev = &dummy;
 
-		while (counter != nullptr)
+		while (n--) head = head->next;
+
+		while (head != nullptr)
 		{
-			count++;
-			counter = counter->next;
+			head = head->next;
+			prev = prev->next;
 		}
 
-		int index = count - n;
-		ListNode* current = head;
+		ListNode* next = prev->next;
+		prev->next = prev->next->next;
+		delete next;
 
-		if (index == 0)
-		{
-			head = current->next;
-			delete current;
-			return head;
-		}
-
-		while (current != nullptr && --index > 0)
-			current = current->next;
-
-		if (current != nullptr && current->next != nullptr)
-		{
-			ListNode* next = current->next;
-			current->next = current->next->next;
-			delete next;
-		}
-
-		return head;
+		return dummy.next;
 	}
 };
 
@@ -74,8 +60,8 @@ void printList(ListNode* head)
 
 int main()
 {
-	std::vector<int> input1 = { 1 };
-	//std::vector<int> input1 = { 1,2 };
+	//std::vector<int> input1 = { 1 };
+	std::vector<int> input1 = { 1,2 };
 	ListNode* head1 = createList(input1);
 	printList(head1);
 
